@@ -6,22 +6,28 @@ const authMiddleware = require('../middleware/auth');
 router.post('/', authMiddleware, async (req, res) => {
   const { receiverId, content } = req.body;
 
-  // Debug: Check if req.user is available
-  console.log('Authenticated user:', req.user);
+  // Debugging to ensure req.user is correctly populated
+  console.log('Authenticated user:', req.user);  // Ensure req.user contains user data
 
   if (!req.user) {
     return res.status(400).json({ error: 'Sender (user) not authenticated' });
   }
 
+  // Ensure the receiverId and content are provided in the body
+  if (!receiverId || !content) {
+    return res.status(400).json({ error: 'Receiver ID and message content are required' });
+  }
+
   // Create the new message
   const newMessage = new Message({
-    sender: req.user.id, // The sender is the authenticated user
-    receiver: receiverId, // Receiver from request body
-    content,              // Content from request body
+    sender: req.user._id,  // Use req.user._id (it should be `req.user._id` instead of `req.user.id`)
+    receiver: receiverId,  // Receiver from request body
+    content,               // Content from request body
   });
 
   try {
     const savedMessage = await newMessage.save();
+    console.log('Saved message:', savedMessage);  // Log to confirm the message is saved
     res.json(savedMessage);  // Send back the saved message
   } catch (err) {
     console.error('Error sending message:', err);
@@ -29,16 +35,15 @@ router.post('/', authMiddleware, async (req, res) => {
   }
 });
 
-
 // Get all messages with a specific user
 router.get('/:userId', authMiddleware, async (req, res) => {
   try {
     const messages = await Message.find({
       $or: [
-        { sender: req.user.id, receiver: req.params.userId },
-        { sender: req.params.userId, receiver: req.user.id },
+        { sender: req.user._id, receiver: req.params.userId },
+        { sender: req.params.userId, receiver: req.user._id },
       ],
-    }).populate('sender receiver', 'username');  // Optionally populate sender and receiver fields
+    }).populate('sender receiver', 'username');  // Populate sender and receiver fields
 
     res.json(messages);  // Return the fetched messages
   } catch (err) {
