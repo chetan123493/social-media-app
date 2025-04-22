@@ -1,0 +1,172 @@
+/* General container for the dashboard */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #e8f4ff 0%, #f4f7fc 100%); /* Gradient background for depth */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 2rem;
+  }
+  
+  /* Dashboard content styling */
+  .dashboard-content {
+    background-color: #ffffff;
+    border-radius: 12px; /* Slightly more rounded corners */
+    padding: 3rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    transform: scale(0.98);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.6s ease-out; /* Fade-in effect */
+  }
+  
+  .dashboard-content:hover {
+    transform: scale(1.02); /* Slightly bigger on hover for emphasis */
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  }
+  
+  /* Fade-in keyframe animation */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Heading styling */
+  h2 {
+    color: #333;
+    font-size: 2.8rem; /* Slightly bigger heading */
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+  }
+  
+  h2:hover {
+    color: #4CAF50; /* Change color on hover for interactive feel */
+  }
+  
+  /* Paragraph styling */
+  p {
+    color: #555;
+    font-size: 1.3rem; /* Increased font size for readability */
+    margin-bottom: 2rem;
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 80%; /* Ensure text doesn't stretch too wide */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Link styling */
+  a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+    margin: 10px 0;
+    display: inline-block;
+  }
+  
+  a:hover {
+    color: #45a049; /* Slight darker green on hover */
+    text-decoration: underline;
+    transform: translateY(-2px); /* Subtle hover effect */
+  }
+  
+  a:active {
+    transform: translateY(2px); /* Button press effect */
+  }
+  
+  /* Add a "Go to Feed" button-like style */
+  a:first-of-type {
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  a:first-of-type:hover {
+    background-color: #45a049;
+    transform: translateY(-4px); /* Bigger hover effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  a:first-of-type:active {
+    transform: translateY(2px); /* Button press effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .dashboard-container {
+      padding: 1rem; /* Slightly reduce padding on smaller screens */
+    }
+  
+    .dashboard-content {
+      width: 85%;
+      padding: 2rem;
+    }
+  
+    h2 {
+      font-size: 2.2rem;
+    }
+  
+    p {
+      font-size: 1.1rem;
+    }
+  
+    a {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* Further optimization for very small screens (max-width: 480px) */
+  @media (max-width: 480px) {
+    h2 {
+      font-size: 2rem;
+    }
+  
+    p {
+      font-size: 1rem;
+    }
+  
+    a {
+      font-size: 1rem;
+    }
+  }
+  .logout-btn {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #ff4e50, #f9d423);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .logout-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #f12711, #f5af19);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
+  
