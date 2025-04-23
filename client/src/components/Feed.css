@@ -1,181 +1,182 @@
 /* Feed Container */
 .feed-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-    background: linear-gradient(135deg, #e8f4ff 0%, #f5f7fb 100%); /* Gradient background for depth */
-    height: 100vh;
-    font-family: 'Arial', sans-serif;
-    overflow-y: auto; /* Allows scrolling if content overflows */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  background: linear-gradient(135deg, #e0f7fa 0%, #f0f4f8 100%); /* Lighter gradient for a softer feel */
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+  overflow-y: auto; /* Allows scrolling if content overflows */
+}
+
+/* Content inside Feed */
+.feed-content {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 16px; /* Slightly more rounded corners */
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12); /* Stronger shadow for depth */
+  width: 100%;
+  max-width: 960px; /* Wider content area for better readability */
+  transform: scale(0.98);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.6s ease-out; /* Fade-in effect */
+}
+
+.feed-content:hover {
+  transform: scale(1.02); /* Slightly bigger on hover for emphasis */
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18); /* Enhanced shadow effect */
+}
+
+/* Fade-in keyframe animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  
-  /* Content inside Feed */
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Heading styling */
+h2 {
+  color: #333;
+  font-size: 2.5rem; /* Bigger heading for better prominence */
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+h2:hover {
+  color: #009688; /* Change to a cooler greenish shade */
+}
+
+/* Post List */
+.post-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0;
+}
+
+/* Post Item */
+.post-item {
+  margin-bottom: 30px; /* Increased space between posts */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-item:hover {
+  transform: translateY(-8px); /* Lift the post on hover */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); /* Subtle shadow effect */
+}
+
+/* Post Card */
+.post-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 16px; /* More rounded corners */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+  background-color: #f1f1f1; /* Slight color change on hover */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Post Content */
+.post-content {
+  color: #444;
+  font-size: 1.2rem; /* Slightly larger font size for readability */
+  line-height: 1.7;
+  margin-bottom: 18px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.post-content:hover {
+  color: #009688; /* Change color on hover */
+}
+
+/* Post Image */
+.post-image {
+  width: 100%;
+  max-height: 380px; /* Increased height for images */
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 20px; /* Space below the image */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.post-image:hover {
+  transform: scale(1.08); /* Zoom effect for image hover */
+  opacity: 0.85; /* Slight dimming effect */
+}
+
+/* Responsive for medium screens (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .feed-container {
+    padding: 20px;
+  }
+
   .feed-content {
-    background-color: #fff;
     padding: 2rem;
-    border-radius: 12px; /* Rounded corners */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); /* Stronger shadow for depth */
-    width: 100%;
-    max-width: 900px; /* Slightly wider content area */
-    transform: scale(0.98);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: fadeIn 0.6s ease-out; /* Fade-in effect */
   }
-  
-  .feed-content:hover {
-    transform: scale(1);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Enhanced hover effect */
-  }
-  
-  /* Fade-in keyframe animation */
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Heading styling */
+
   h2 {
-    color: #333;
-    font-size: 2.2rem; /* Larger heading for better prominence */
-    margin-bottom: 2rem;
-    text-align: center;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    transition: color 0.3s ease;
+    font-size: 2.2rem;
   }
-  
-  h2:hover {
-    color: #4CAF50; /* Color change on hover */
-  }
-  
-  /* Post List */
-  .post-list {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 0;
-  }
-  
-  /* Post Item */
-  .post-item {
-    margin-bottom: 25px; /* Increased space between posts */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .post-item:hover {
-    transform: translateY(-5px); /* Lift the post on hover */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-  }
-  
-  /* Post Card */
-  .post-card {
-    background-color: #fafafa;
-    padding: 20px;
-    border-radius: 12px; /* More rounded corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .post-card:hover {
-    background-color: #f1f1f1; /* Slight color change on hover */
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  }
-  
-  /* Post Content */
-  .post-content {
-    color: #333;
-    font-size: 1.1rem; /* Slightly larger font size */
-    line-height: 1.6;
-    margin-bottom: 15px;
-    font-weight: 400;
-    transition: color 0.3s ease;
-  }
-  
-  .post-content:hover {
-    color: #4CAF50; /* Change color on hover */
-  }
-  
-  /* Post Image */
+
   .post-image {
-    width: 100%;
-    max-height: 350px; /* Increased height for images */
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 15px; /* Space below the image */
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    max-height: 280px; /* Reduced image size on medium screens */
   }
-  
-  .post-image:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
-    opacity: 0.8; /* Dim the image slightly */
+}
+
+/* Responsive for smaller screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .feed-container {
+    padding: 15px;
   }
-  
-  /* Responsive for smaller screens */
-  @media (max-width: 1024px) {
-    .feed-container {
-      padding: 15px;
-    }
-  
-    .feed-content {
-      padding: 1.8rem;
-    }
-  
-    h2 {
-      font-size: 2rem;
-    }
-  
-    .post-image {
-      max-height: 250px; /* Reduced image size on medium screens */
-    }
+
+  .feed-content {
+    padding: 1.8rem;
   }
-  
-  @media (max-width: 768px) {
-    .feed-container {
-      padding: 10px;
-    }
-  
-    .feed-content {
-      padding: 1.5rem;
-    }
-  
-    h2 {
-      font-size: 1.8rem;
-    }
-  
-    .post-item {
-      margin-bottom: 15px; /* Less space between posts */
-    }
-  
-    .post-image {
-      max-height: 220px; /* Further reduced image size on smaller screens */
-    }
+
+  h2 {
+    font-size: 2rem;
   }
-  
-  @media (max-width: 480px) {
-    .feed-container {
-      padding: 5px;
-    }
-  
-    .feed-content {
-      padding: 1rem;
-    }
-  
-    h2 {
-      font-size: 1.6rem;
-    }
-  
-    .post-content {
-      font-size: 1rem;
-    }
-  
-    .post-image {
-      max-height: 180px; /* Further reduced image size for mobile */
-    }
+
+  .post-item {
+    margin-bottom: 20px; /* Reduced space between posts */
   }
-  
+
+  .post-image {
+    max-height: 240px; /* Further reduced image size */
+  }
+}
+
+/* Responsive for mobile screens (max-width: 480px) */
+@media (max-width: 480px) {
+  .feed-container {
+    padding: 10px;
+  }
+
+  .feed-content {
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .post-content {
+    font-size: 1rem;
+  }
+
+  .post-image {
+    max-height: 200px; /* Further reduced image size for mobile */
+  }
+}

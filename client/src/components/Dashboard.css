@@ -1,172 +1,182 @@
 /* General container for the dashboard */
 .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #e8f4ff 0%, #f4f7fc 100%); /* Gradient background for depth */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 2rem;
-  }
-  
-  /* Dashboard content styling */
-  .dashboard-content {
-    background-color: #ffffff;
-    border-radius: 12px; /* Slightly more rounded corners */
-    padding: 3rem;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 100%;
-    max-width: 600px;
-    transform: scale(0.98);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: fadeIn 0.6s ease-out; /* Fade-in effect */
-  }
-  
-  .dashboard-content:hover {
-    transform: scale(1.02); /* Slightly bigger on hover for emphasis */
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
-  }
-  
-  /* Fade-in keyframe animation */
-  @keyframes fadeIn {
-    0% {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1c1c1c 0%, #434343 100%); /* Dark gradient for modern look */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 3rem;
+  color: #e0e0e0; /* Light gray text for contrast */
+}
+
+/* Dashboard content styling */
+.dashboard-content {
+  background-color: #222222; /* Dark background for card */
+  border-radius: 16px; /* More rounded corners */
+  padding: 3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 100%;
+  max-width: 700px;
+  transform: scale(0.98);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  animation: fadeIn 0.6s ease-out; /* Fade-in effect */
+}
+
+.dashboard-content:hover {
+  transform: scale(1.05); /* Bigger on hover for emphasis */
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+  background-color: #1b1a1a; /* Slightly brighter on hover */
+}
+
+/* Fade-in keyframe animation */
+@keyframes fadeIn {
+  0% {
       opacity: 0;
       transform: translateY(20px);
-    }
-    100% {
+  }
+  100% {
       opacity: 1;
       transform: translateY(0);
-    }
   }
-  
-  /* Heading styling */
+}
+
+/* Heading styling */
+h2 {
+  color: #FF4081; /* Vibrant pinkish-red for headings */
+  font-size: 3rem; /* Larger heading */
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+h2:hover {
+  color: #FF80AB; /* Slight color shift for interactivity */
+  transform: translateY(-5px); /* Hover lift effect */
+}
+
+/* Paragraph styling */
+p {
+  color: #d1d1d1; /* Lighter gray for paragraphs */
+  font-size: 1.4rem; /* Increased font size */
+  margin-bottom: 2rem;
+  font-weight: 400;
+  line-height: 1.7;
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Link styling */
+a {
+  color: #00BFAE; /* Teal color for links */
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+  margin: 12px 0;
+  display: inline-block;
+}
+
+a:hover {
+  color: #1DBAC3; /* Slight darker teal on hover */
+  text-decoration: underline;
+  text-shadow: 0 0 10px rgba(0, 191, 174, 0.6); /* Glow effect */
+  transform: translateY(-3px); /* Slight lift effect */
+}
+
+a:active {
+  transform: translateY(2px); /* Button press effect */
+}
+
+/* Add a "Go to Feed" button-like style */
+a:first-of-type {
+  padding: 14px 22px;
+  background: linear-gradient(135deg, #6e7dff, #42aaff); /* Blue gradient */
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+a:first-of-type:hover {
+  background: linear-gradient(135deg, #5a6cfc, #3399ff);
+  transform: translateY(-5px); /* Bigger hover effect */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+a:first-of-type:active {
+  transform: translateY(2px); /* Button press effect */
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .dashboard-container {
+      padding: 2rem; /* Slightly reduce padding */
+  }
+
+  .dashboard-content {
+      width: 90%;
+      padding: 2.5rem;
+  }
+
   h2 {
-    color: #333;
-    font-size: 2.8rem; /* Slightly bigger heading */
-    margin-bottom: 1rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    transition: color 0.3s ease;
+      font-size: 2.4rem;
   }
-  
-  h2:hover {
-    color: #4CAF50; /* Change color on hover for interactive feel */
-  }
-  
-  /* Paragraph styling */
+
   p {
-    color: #555;
-    font-size: 1.3rem; /* Increased font size for readability */
-    margin-bottom: 2rem;
-    font-weight: 400;
-    line-height: 1.6;
-    max-width: 80%; /* Ensure text doesn't stretch too wide */
-    margin-left: auto;
-    margin-right: auto;
+      font-size: 1.2rem;
   }
-  
-  /* Link styling */
+
   a {
-    color: #4CAF50;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 500;
-    transition: color 0.3s ease, transform 0.3s ease;
-    margin: 10px 0;
-    display: inline-block;
+      font-size: 1.2rem;
   }
-  
-  a:hover {
-    color: #45a049; /* Slight darker green on hover */
-    text-decoration: underline;
-    transform: translateY(-2px); /* Subtle hover effect */
+}
+
+/* Further optimization for very small screens (max-width: 480px) */
+@media (max-width: 480px) {
+  h2 {
+      font-size: 2.1rem;
   }
-  
-  a:active {
-    transform: translateY(2px); /* Button press effect */
-  }
-  
-  /* Add a "Go to Feed" button-like style */
-  a:first-of-type {
-    padding: 12px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 5px;
-    text-align: center;
-    display: inline-block;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  a:first-of-type:hover {
-    background-color: #45a049;
-    transform: translateY(-4px); /* Bigger hover effect */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  }
-  
-  a:first-of-type:active {
-    transform: translateY(2px); /* Button press effect */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Responsive design for smaller screens */
-  @media (max-width: 768px) {
-    .dashboard-container {
-      padding: 1rem; /* Slightly reduce padding on smaller screens */
-    }
-  
-    .dashboard-content {
-      width: 85%;
-      padding: 2rem;
-    }
-  
-    h2 {
-      font-size: 2.2rem;
-    }
-  
-    p {
-      font-size: 1.1rem;
-    }
-  
-    a {
-      font-size: 1.1rem;
-    }
-  }
-  
-  /* Further optimization for very small screens (max-width: 480px) */
-  @media (max-width: 480px) {
-    h2 {
-      font-size: 2rem;
-    }
-  
-    p {
+
+  p {
       font-size: 1rem;
-    }
-  
-    a {
-      font-size: 1rem;
-    }
   }
-  .logout-btn {
-    margin-top: 20px;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #ff4e50, #f9d423);
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+  a {
+      font-size: 1.1rem;
   }
-  
-  .logout-btn:hover {
-    transform: translateY(-2px);
-    background: linear-gradient(135deg, #f12711, #f5af19);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-  }
-  
+}
+
+/* Logout button styling */
+.logout-btn {
+  margin-top: 25px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #ff4e50, #f9d423); /* Vibrant gradient */
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.logout-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #f12711, #f5af19);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.logout-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+}
