@@ -68,28 +68,24 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Middleware to authenticate token (protect routes requiring login)
-const authenticateToken = (req, res, next) => {
-  // Get token from Authorization header (Bearer <token>)
+const authMiddleware = (req, res, next) => {
   const token = req.header('Authorization')?.replace('Bearer ', '');
-
   if (!token) {
     return res.status(401).json({ message: 'Access denied. No token provided.' });
   }
-
-  // Verify the token
   try {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = verified;  // Attach the decoded user to request object
+    req.user = verified;
     next();
   } catch (err) {
     console.error('JWT verification failed:', err);
-    return res.status(400).json({ message: 'Invalid token' });
+    res.status(400).json({ message: 'Invalid token' });
   }
 };
 
+
 // Example of a protected route using the authentication middleware
-router.get('/profile', authenticateToken, async (req, res) => {
+router.get('/profile', authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user._id);  // Use user ID from JWT payload
     if (!user) {

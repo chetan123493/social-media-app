@@ -2,51 +2,32 @@
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #1c1c1c 0%, #434343 100%); /* Dark gradient for modern look */
+  background: linear-gradient(135deg, #1c1c1c 0%, #434343 100%);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 3rem;
-  color: #e0e0e0; /* Light gray text for contrast */
+  color: #e0e0e0;
 }
 
 /* Dashboard content styling */
 .dashboard-content {
-  background-color: #222222; /* Dark background for card */
-  border-radius: 16px; /* More rounded corners */
+  background-color: #222222;
+  border-radius: 16px;
   padding: 3rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   text-align: center;
   width: 100%;
   max-width: 700px;
-  transform: scale(0.98);
+  margin-bottom: 100px; /* Ensure there's space for the footer */
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-  animation: fadeIn 0.6s ease-out; /* Fade-in effect */
-}
-
-.dashboard-content:hover {
-  transform: scale(1.05); /* Bigger on hover for emphasis */
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3); /* Stronger shadow */
-  background-color: #1b1a1a; /* Slightly brighter on hover */
-}
-
-/* Fade-in keyframe animation */
-@keyframes fadeIn {
-  0% {
-      opacity: 0;
-      transform: translateY(20px);
-  }
-  100% {
-      opacity: 1;
-      transform: translateY(0);
-  }
 }
 
 /* Heading styling */
 h2 {
-  color: #FF4081; /* Vibrant pinkish-red for headings */
-  font-size: 3rem; /* Larger heading */
+  color: #FF4081;
+  font-size: 3rem;
   margin-bottom: 1.5rem;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -54,72 +35,79 @@ h2 {
 }
 
 h2:hover {
-  color: #FF80AB; /* Slight color shift for interactivity */
-  transform: translateY(-5px); /* Hover lift effect */
+  color: #FF80AB;
+  transform: translateY(-5px);
 }
 
-/* Paragraph styling */
-p {
-  color: #d1d1d1; /* Lighter gray for paragraphs */
-  font-size: 1.4rem; /* Increased font size */
-  margin-bottom: 2rem;
-  font-weight: 400;
-  line-height: 1.7;
-  max-width: 85%;
-  margin-left: auto;
-  margin-right: auto;
+/* Feed section at the bottom */
+.feed-section {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #222222;
+  padding: 10px 0;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 1000; /* Make sure it stays above the content */
 }
 
-/* Link styling */
+/* Post card style */
+.post-card {
+  background-color: #ffffff;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-card p {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Profile info styling */
+.profile-section {
+  position: fixed;
+  bottom: 80px; /* Adjust the position to appear above the posts */
+  left: 20px;
+  right: 20px;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 999; /* Ensure it stays above the feed */
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+}
+
+.profile-picture {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Links for profile */
 a {
-  color: #00BFAE; /* Teal color for links */
+  color: #00BFAE;
   text-decoration: none;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 500;
-  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
-  margin: 12px 0;
-  display: inline-block;
+  transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #1DBAC3; /* Slight darker teal on hover */
+  color: #1DBAC3;
   text-decoration: underline;
-  text-shadow: 0 0 10px rgba(0, 191, 174, 0.6); /* Glow effect */
-  transform: translateY(-3px); /* Slight lift effect */
-}
-
-a:active {
-  transform: translateY(2px); /* Button press effect */
-}
-
-/* Add a "Go to Feed" button-like style */
-a:first-of-type {
-  padding: 14px 22px;
-  background: linear-gradient(135deg, #6e7dff, #42aaff); /* Blue gradient */
-  color: white;
-  border-radius: 8px;
-  text-align: center;
-  display: inline-block;
-  margin-bottom: 20px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-a:first-of-type:hover {
-  background: linear-gradient(135deg, #5a6cfc, #3399ff);
-  transform: translateY(-5px); /* Bigger hover effect */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-a:first-of-type:active {
-  transform: translateY(2px); /* Button press effect */
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .dashboard-container {
-      padding: 2rem; /* Slightly reduce padding */
+      padding: 2rem;
   }
 
   .dashboard-content {
@@ -131,52 +119,7 @@ a:first-of-type:active {
       font-size: 2.4rem;
   }
 
-  p {
-      font-size: 1.2rem;
+  .profile-section, .feed-section {
+      padding: 10px;
   }
-
-  a {
-      font-size: 1.2rem;
-  }
-}
-
-/* Further optimization for very small screens (max-width: 480px) */
-@media (max-width: 480px) {
-  h2 {
-      font-size: 2.1rem;
-  }
-
-  p {
-      font-size: 1rem;
-  }
-
-  a {
-      font-size: 1.1rem;
-  }
-}
-
-/* Logout button styling */
-.logout-btn {
-  margin-top: 25px;
-  padding: 14px 28px;
-  background: linear-gradient(135deg, #ff4e50, #f9d423); /* Vibrant gradient */
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  border: none;
-  border-radius: 40px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.logout-btn:hover {
-  transform: translateY(-3px);
-  background: linear-gradient(135deg, #f12711, #f5af19);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-}
-
-.logout-btn:active {
-  transform: translateY(2px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
 }

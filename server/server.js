@@ -11,7 +11,9 @@ const messageRoutes = require('./routers/messages');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: '*',  // Allow all domains to access your API
+}));
 app.use(express.json());
 
 // Root route
@@ -29,6 +31,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/posts', postsRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/messages', messageRoutes);
+
+
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,

@@ -1,4 +1,3 @@
-// Post.js (Frontend)
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Post.css';
@@ -9,16 +8,38 @@ const CreatePost = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]); // State for holding posts
+  const [userId, setUserId] = useState(null); // State to hold the logged-in user's ID
 
-  // Fetch posts when the component loads or after a new post is created
+  // Fetch the logged-in user's ID from the token (assuming it's stored in localStorage)
+  const getUserIdFromToken = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decode the JWT token
+      return decodedToken.userId; // Assuming the JWT contains userId
+    }
+    return null;
+  };
+
+  // Fetch posts from the API
   const fetchPosts = async () => {
+    const token = localStorage.getItem('token'); // Get token from localStorage
+    if (!token) {
+      setError('User not logged in.');
+      return;
+    }
+
     try {
       const response = await axios.get('http://localhost:5000/api/posts', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: {
+          Authorization: `Bearer ${token}`, // Send the token in the Authorization header
+        },
       });
-      setPosts(response.data); // Set the posts data from the response
+
+      // Set the posts in state
+      setPosts(response.data); // Response will contain all posts for this user
     } catch (err) {
       setError('Error fetching posts, please try again.');
+      console.error(err);
     }
   };
 
@@ -44,13 +65,15 @@ const CreatePost = () => {
           },
         }
       );
-      setPosts((prevPosts) => [...prevPosts, response.data]); // Optimistic update
-      alert('Post created');
+      // Optimistic update: Add the new post to the existing posts
+      setPosts((prevPosts) => [...prevPosts, response.data]); // Assuming response.data contains the new post
       setContent('');
       setImageUrl('');
       setError(null);
+      alert('Post created');
     } catch (err) {
       setError('Error creating post, please try again.');
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -58,7 +81,7 @@ const CreatePost = () => {
 
   const handleDeletePost = async (postId) => {
     try {
-      const response = await axios.delete(
+      await axios.delete(
         `http://localhost:5000/api/posts/${postId}`,
         {
           headers: {
@@ -66,10 +89,12 @@ const CreatePost = () => {
           },
         }
       );
-      setPosts(posts.filter((post) => post._id !== postId)); // Remove deleted post from state
+      // Remove the deleted post from the posts state
+      setPosts(posts.filter((post) => post._id !== postId));
       alert('Post deleted successfully');
     } catch (err) {
       alert('Error deleting post');
+      console.error(err);
     }
   };
 

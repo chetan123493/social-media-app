@@ -4,14 +4,16 @@ const authenticateToken = require('../middleware/auth'); // Import the JWT authe
 const router = express.Router();
 
 // GET /api/posts - Fetch all posts (secured with token authentication)
-// GET /api/posts - Fetch all posts (secured with token authentication)
 router.get('/', authenticateToken, async (req, res) => {
   try {
-    const posts = await Post.find() // Fetch all posts
-      .populate('userId', 'username') // Populate the userId with only the username
+    // Fetch all posts and populate the userId with the username
+    const posts = await Post.find()
+      .populate('userId', 'username') // Only get the 'username' from userId
       .exec();
-    res.status(200).json(posts); // Send all posts as JSON response
+
+    res.status(200).json(posts); // Send the posts as a JSON response
   } catch (err) {
+    console.error('Error fetching posts:', err);
     res.status(500).json({ error: 'Failed to fetch posts' });
   }
 });
@@ -52,27 +54,22 @@ router.post('/', authenticateToken, async (req, res) => {
 });
 
 // DELETE /api/posts/:id - Delete a post (secured with token authentication)
+// Delete a single post by ID
 router.delete('/:id', authenticateToken, async (req, res) => {
-  const { id } = req.params;
-  const userId = req.user._id;
-
-  console.log(`Attempting to delete post with ID: ${id}`);
-  console.log(`Authenticated user ID: ${userId}`);
+  const { id } = req.params; // Get the post ID from the URL
+  const userId = req.user._id; // Get the user ID from the JWT token
 
   try {
-    const post = await Post.findById(id);
+    // Check if the post exists and if it belongs to the authenticated user
+    const post = await Post.findOne({ _id: id, userId: userId });
+
     if (!post) {
-      console.log('Post not found.');
-      return res.status(404).json({ message: 'Post not found.' });
+      return res.status(404).json({ message: 'Post not found or not authorized to delete.' });
     }
 
-    if (post.userId.toString() !== userId.toString()) {
-      console.log('User does not own this post.');
-      return res.status(403).json({ message: 'You can only delete your own posts.' });
-    }
+    // Delete the post
+    await Post.findByIdAndDelete(id);
 
-    await post.deleteOne();
-    console.log('Post deleted successfully');
     res.status(200).json({ message: 'Post deleted successfully.' });
   } catch (err) {
     console.error('Error deleting post:', err);

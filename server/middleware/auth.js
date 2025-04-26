@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const authenticateToken = (req, res, next) => {
+const authMiddleware = (req, res, next) => {
   const token = req.header('Authorization')?.replace('Bearer ', '');
 
   if (!token) {
@@ -13,7 +13,7 @@ const authenticateToken = (req, res, next) => {
     // Attach the user data to the request object
     req.user = verified;
 
-    console.log(req.user); // Debug: Check if the user data is correctly attached
+    console.log(req.user); // Check the attached user data (should include username, userId, email, etc.)
 
     next();
   } catch (err) {
@@ -22,4 +22,4 @@ const authenticateToken = (req, res, next) => {
   }
 };
 
-module.exports = authenticateToken;
+module.exports = authMiddleware;

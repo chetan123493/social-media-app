@@ -62,5 +62,56 @@ router.get('/:userId', authMiddleware, async (req, res) => {
     res.status(500).json({ error: 'Error fetching messages' });
   }
 });
+// Clear all messages for the authenticated user
+router.delete('/clear', authMiddleware, async (req, res) => {
+  const userId = req.user._id;  // Get the authenticated user's ID from req.user
+
+  try {
+    // Delete all messages where the authenticated user is either the sender or receiver
+    const result = await Message.deleteMany({
+      $or: [
+        { sender: userId },   // Messages where the authenticated user is the sender
+        { receiver: userId }   // Messages where the authenticated user is the receiver
+      ]
+    });
+
+    // Check if any messages were deleted
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: 'No messages found to delete' });
+    }
+
+    // Respond with success message
+    res.status(200).json({ message: 'All messages cleared successfully' });
+  } catch (err) {
+    // Log the error for debugging
+    console.error('Error clearing messages:', err);
+
+    // Respond with an internal server error status
+    res.status(500).json({ error: 'Server error clearing messages' });
+  }
+});
+
+// Delete a specific message
+router.delete('/:messageId', authMiddleware, async (req, res) => {
+  try {
+    const message = await Message.findById(req.params.messageId);
+
+    if (!message) {
+      return res.status(404).json({ error: 'Message not found' });
+    }
+
+    // Only allow the sender to delete their own message
+    if (message.sender.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ error: 'You are not authorized to delete this message' });
+    }
+
+    await message.deleteOne();
+
+    res.status(200).json({ message: 'Message deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting message:', err);
+    res.status(500).json({ error: 'Server error deleting message' });
+  }
+});
 
 module.exports = router;

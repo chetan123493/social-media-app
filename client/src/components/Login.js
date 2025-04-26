@@ -11,18 +11,18 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-
+  
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { username, password });
-      const token = response.data.token;
-
+      const { token, userId } = response.data;  // Ensure userId is returned by the API
+      
       localStorage.setItem('token', token);
-
+      localStorage.setItem('userId', userId);  // Store userId in localStorage
+      
       toast.success('Login successful 🎉');
       navigate('/dashboard');
     } catch (error) {
@@ -33,7 +33,7 @@ const Login = () => {
       setLoading(false);
     }
   };
-
+  
   return (
     <div className="login-container">
       <div className="login-form">
