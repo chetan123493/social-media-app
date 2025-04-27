@@ -24,7 +24,7 @@ const Login = () => {
       localStorage.setItem('userId', userId);  // Store userId in localStorage
       
       toast.success('Login successful 🎉');
-      navigate('/dashboard');
+      navigate('/feed');
     } catch (error) {
       console.error('Login error:', error);
       setError('Login failed. Please check your credentials and try again.');

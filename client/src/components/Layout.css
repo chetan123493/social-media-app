@@ -1,0 +1,107 @@
+/* Footer styles */
+.feed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black !important; /* Ensures the background stays black */
+  color: white; /* Text color for better contrast */
+  padding: 12px 0;
+  border-top: 1px solid #444; /* Darker border for a cleaner look */
+  text-align: center;
+  z-index: 10;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
+  transition: padding 0.3s ease, font-size 0.3s ease; /* Smooth transition for shrinking */
+}
+
+/* Shrunk footer - smaller padding and font-size when shrunk */
+.feed-footer.shrunk {
+  padding: 6px 0; /* Shrink the padding */
+  font-size: 14px; /* Smaller font size */
+  box-shadow: none; /* Remove shadow when shrunk */
+}
+
+/* Footer links container */
+.footer-links {
+  display: flex;
+  justify-content: flex-start; /* Align links to the left */
+  align-items: center;
+  gap: 40px;
+  width: 100%; /* Use full width for links */
+  transition: transform 0.3s ease; /* Smooth transition for shrinking */
+}
+
+/* Style for the links */
+.footer-links a {
+  text-decoration: none;
+  color: white; /* White text color for links */
+  font-weight: bold;
+  font-size: 18px; /* Slightly smaller text size for better spacing */
+  transition: color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effects */
+  padding: 8px 12px; /* Ensure padding is the same for all links */
+  display: inline-block; /* Makes the links behave like buttons */
+}
+
+/* Shrunk footer links - smaller font size when shrunk */
+.feed-footer.shrunk .footer-links a {
+  font-size: 14px; /* Shrink link font size */
+  padding: 4px 8px; /* Reduce padding when footer shrinks */
+}
+
+/* Hover effect for links */
+.footer-links a:hover {
+  color: #3498db; /* Blue color on hover */
+  transform: translateY(-3px); /* Slight movement effect on hover */
+}
+
+/* Styling for the logout button container */
+.logout-container {
+  display: flex;
+  justify-content: flex-end; /* Align logout button to the right */
+  align-items: center;
+  width: auto; /* Let it adjust based on content */
+  position: absolute; /* Absolute positioning to keep it at the right corner */
+  right: 20px; /* Stick to the far-right corner with some margin */
+  top: 50%; /* Vertically center the logout button */
+  transform: translateY(-50%); /* Perfect vertical centering */
+}
+
+/* Styling for the logout button (icon only) */
+.logout-button {
+  color: white; /* White icon color */
+  font-size: 18px; /* Same font size as other footer icons */
+  transition: color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effects */
+  display: inline-block; /* Make the icon behave like a clickable link */
+  padding: 4px 8px; /* Smaller padding to make it look like a small clickable pointer */
+  cursor: pointer;
+}
+
+/* Specific styling for the logout button within the layout */
+.layout-container .feed-footer .footer-links .logout-button {
+  color: #fff; /* White icon color */
+  font-size: 18px; /* Consistent size with other icons */
+  transition: color 0.3s ease;
+}
+
+/* Hover effect specifically for logout button */
+.layout-container .feed-footer .footer-links .logout-button:hover {
+  color: #007bff; /* Change color to blue on hover */
+}
+
+/* Footer links active styling (for other links like Profile, Feed, etc.) */
+.layout-container .feed-footer .footer-links .active {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Arrow icon for shrinking footer */
+.footer-arrow {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 20px; /* Icon size */
+  color: white;
+  transition: color 0.3s ease;
+}
+

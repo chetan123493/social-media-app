@@ -11,7 +11,8 @@ import ChatPage from './components/ChatPage';  // Import ChatPage here
 import UserProfile from './components/User';  // Import UserProfile here
 import { useParams } from 'react-router-dom'; // Import useParams to access URL parameters
 import Messages from './components/Messages';
-
+import Layout from './components/Layout'; // Import the Layout component
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const App = () => {
   return (
@@ -24,22 +25,40 @@ const App = () => {
       <Route path="/register" element={<Register />} />
 
       {/* Protected Routes using PrivateRoute */}
-      <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
-      <Route path="/feed" element={<PrivateRoute element={<Feed />} />} />
-      <Route path="/post/:id" element={<PrivateRoute element={<Post />} />} />
-      <Route path="/chat/:userId" element={<PrivateRoute element={<ChatPage />} />} />
+      <Route 
+        path="/dashboard" 
+        element={<PrivateRoute element={<Layout><Dashboard /></Layout>} />} 
+      />
+      <Route 
+        path="/feed" 
+        element={<PrivateRoute element={<Layout><Feed /></Layout>} />} 
+      />
+      <Route 
+        path="/post/:id" 
+        element={<PrivateRoute element={<Layout><Post /></Layout>} />} 
+      />
+      <Route 
+        path="/chat/:userId" 
+        element={<PrivateRoute element={<Layout><ChatPage /></Layout>} />} 
+      />
 
       {/* UserProfile Route */}
       <Route 
         path="/profile/:userId" 
         element={
-          <PrivateRoute element={<UserProfileWrapper />} />
+          <PrivateRoute element={<Layout><UserProfileWrapper /></Layout>} />
         }
       />
 
       {/* Messages Route */}
-      <Route path="/messages" element={<PrivateRoute element={<Messages />} />} />
-      <Route path="/messages/:userId" element={<PrivateRoute element={<ChatPage />} />} />
+      <Route 
+        path="/messages" 
+        element={<PrivateRoute element={<Layout><Messages /></Layout>} />} 
+      />
+      <Route 
+        path="/messages/:userId" 
+        element={<PrivateRoute element={<Layout><ChatPage /></Layout>} />} 
+      />
 
       {/* Catch-all route for 404 */}
       <Route path="*" element={<NotFound />} />

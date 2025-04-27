@@ -116,67 +116,37 @@ h2:hover {
   opacity: 0.85; /* Slight dimming effect */
 }
 
-/* Responsive for medium screens (max-width: 1024px) */
-@media (max-width: 1024px) {
-  .feed-container {
-    padding: 20px;
-  }
 
-  .feed-content {
-    padding: 2rem;
-  }
 
-  h2 {
-    font-size: 2.2rem;
-  }
 
-  .post-image {
-    max-height: 280px; /* Reduced image size on medium screens */
-  }
+/* Fixed Footer */
+.feed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  z-index: 1000; /* Ensures it stays above other content */
 }
 
-/* Responsive for smaller screens (max-width: 768px) */
-@media (max-width: 768px) {
-  .feed-container {
-    padding: 15px;
-  }
-
-  .feed-content {
-    padding: 1.8rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  .post-item {
-    margin-bottom: 20px; /* Reduced space between posts */
-  }
-
-  .post-image {
-    max-height: 240px; /* Further reduced image size */
-  }
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-/* Responsive for mobile screens (max-width: 480px) */
-@media (max-width: 480px) {
-  .feed-container {
-    padding: 10px;
-  }
+.footer-links a, .footer-links button {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
-  .feed-content {
-    padding: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.8rem;
-  }
-
-  .post-content {
-    font-size: 1rem;
-  }
-
-  .post-image {
-    max-height: 200px; /* Further reduced image size for mobile */
-  }
+.footer-links button:hover, .footer-links a:hover {
+  color: #007bff;
 }

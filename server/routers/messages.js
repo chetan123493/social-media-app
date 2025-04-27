@@ -62,11 +62,13 @@ router.get('/:userId', authMiddleware, async (req, res) => {
     res.status(500).json({ error: 'Error fetching messages' });
   }
 });
-// Clear all messages for the authenticated user
 router.delete('/clear', authMiddleware, async (req, res) => {
   const userId = req.user._id;  // Get the authenticated user's ID from req.user
 
   try {
+    // Log to confirm the correct user ID is being used
+    console.log('Authenticated user ID:', userId);
+
     // Delete all messages where the authenticated user is either the sender or receiver
     const result = await Message.deleteMany({
       $or: [
@@ -74,6 +76,9 @@ router.delete('/clear', authMiddleware, async (req, res) => {
         { receiver: userId }   // Messages where the authenticated user is the receiver
       ]
     });
+
+    // Log to confirm the number of messages deleted
+    console.log('Messages deleted:', result.deletedCount);
 
     // Check if any messages were deleted
     if (result.deletedCount === 0) {
