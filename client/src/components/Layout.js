@@ -5,6 +5,7 @@ import './Layout.css'; // Import updated CSS
 const Layout = ({ children }) => {
   const [isShrunk, setIsShrunk] = useState(true); // Start with footer shrunk
   const [hovered, setHovered] = useState(false); // Track if footer is being hovered
+  const [activeLink, setActiveLink] = useState(''); // Track the active footer link
   const navigate = useNavigate();
   let timer; // Store the timer to clear when needed
 
@@ -30,6 +31,20 @@ const Layout = ({ children }) => {
     startShrinkTimer(); // Start shrink timer after mouse leaves
   };
 
+  // Set the active link based on the current path
+  const handleLinkClick = (linkName) => {
+    setActiveLink(linkName); // Set the active link when clicked
+  };
+
+  // Automatically set active link based on the current path
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path.includes('dashboard')) setActiveLink('dashboard');
+    else if (path.includes('post')) setActiveLink('posts');
+    else if (path.includes('feed')) setActiveLink('feed');
+    else if (path.includes('notifications')) setActiveLink('notifications');
+  }, [window.location.pathname]);
+
   // Start the shrink timer when the page loads
   useEffect(() => {
     startShrinkTimer(); // Automatically start shrinking when the page loads
@@ -51,25 +66,45 @@ const Layout = ({ children }) => {
         onMouseLeave={handleMouseLeave}
       >
         <div className="footer-links">
-          <Link to="/dashboard">
+          <Link
+            to="/dashboard"
+            className={activeLink === 'dashboard' ? 'active' : ''}
+            onClick={() => handleLinkClick('dashboard')}
+          >
             <i className="fas fa-user"></i> Profile
           </Link>
-          <Link to="/post/1">
+          <Link
+            to="/post/1"
+            className={activeLink === 'posts' ? 'active' : ''}
+            onClick={() => handleLinkClick('posts')}
+          >
             <i className="fas fa-file-alt"></i> Posts
           </Link>
-          <Link to="/feed">
+          <Link
+            to="/feed"
+            className={activeLink === 'feed' ? 'active' : ''}
+            onClick={() => handleLinkClick('feed')}
+          >
             <i className="fas fa-home"></i> Feed
           </Link>
-          <Link to="/notifications">
+          <Link
+            to="/notifications"
+            className={activeLink === 'notifications' ? 'active' : ''}
+            onClick={() => handleLinkClick('notifications')}
+          >
             <i className="fas fa-bell"></i> Notifications
           </Link>
 
           {/* Logout link */}
-          <Link to="/login" className="logout-link" onClick={() => {
-            localStorage.removeItem('token');
-            localStorage.removeItem('userId');
-            navigate('/login'); // Redirect to login page
-          }}>
+          <Link
+            to="/login"
+            className="logout-link"
+            onClick={() => {
+              localStorage.removeItem('token');
+              localStorage.removeItem('userId');
+              navigate('/login'); // Redirect to login page
+            }}
+          >
             <i className="fas fa-sign-out-alt"></i> Logout
           </Link>
         </div>

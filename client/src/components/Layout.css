@@ -54,6 +54,12 @@
   transform: translateY(-3px); /* Slight movement effect on hover */
 }
 
+/* Active link styling */
+.footer-links a.active {
+  color: #007bff; /* Blue color for active link */
+  font-weight: bold; /* Make active link bold */
+}
+
 /* Styling for the logout button container */
 .logout-container {
   display: flex;
@@ -76,24 +82,6 @@
   cursor: pointer;
 }
 
-/* Specific styling for the logout button within the layout */
-.layout-container .feed-footer .footer-links .logout-button {
-  color: #fff; /* White icon color */
-  font-size: 18px; /* Consistent size with other icons */
-  transition: color 0.3s ease;
-}
-
-/* Hover effect specifically for logout button */
-.layout-container .feed-footer .footer-links .logout-button:hover {
-  color: #007bff; /* Change color to blue on hover */
-}
-
-/* Footer links active styling (for other links like Profile, Feed, etc.) */
-.layout-container .feed-footer .footer-links .active {
-  font-weight: bold;
-  color: #007bff;
-}
-
 /* Arrow icon for shrinking footer */
 .footer-arrow {
   position: absolute;
@@ -104,4 +92,3 @@
   color: white;
   transition: color 0.3s ease;
 }
-
