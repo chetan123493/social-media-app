@@ -1,16 +1,13 @@
 const mongoose = require('mongoose');
 
-const conversationSchema = new mongoose.Schema({
-  userId: { type: String, required: true, unique: true },
-  history: [
-    {
-      role: { type: String, enum: ['user', 'bot'], required: true },
-      message: { type: String, required: true },
-      timestamp: { type: Date, default: Date.now },
-    },
-  ],
+const MessageSchema = new mongoose.Schema({
+    role: { type: String, required: true },
+    message: { type: String, required: true } // This must be a string
 });
 
-const Conversation = mongoose.model('Conversation', conversationSchema);
+const ConversationSchema = new mongoose.Schema({
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    history: [MessageSchema]
+});
 
-module.exports = Conversation;
+module.exports = mongoose.model('Conversation', ConversationSchema);
