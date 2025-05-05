@@ -277,4 +277,3 @@ try {
 };
 
 export default ChatPage;
-

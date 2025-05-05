@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+
 // Core pages
 import Login from './components/Login';
 import Register from './components/Register';
@@ -16,7 +17,6 @@ import Messages from './components/Messages';
 // Profile-related
 import FollowersPage from './components/Followers';
 import FollowingPage from './components/Following';
-
 import UserProfile from './components/Userprofile';  // Import UserProfile
 
 // Other features
@@ -80,13 +80,13 @@ const App = () => {
       />
       <Route
         path="/user-profile"
-        element={<PrivateRoute element={<Layout><UserProfile /></Layout>} />} // Add UserProfile route
+        element={<PrivateRoute element={<Layout><UserProfile /></Layout>} />}
       />
 
       {/* New Gemini Chat route */}
       <Route
-        path="/gemini-chat"
-        element={<PrivateRoute element={<Layout><GeminiChatPage /></Layout>} />} // New Gemini Chat route
+        path="/chiku-chat"
+        element={<PrivateRoute element={<Layout><GeminiChatPage /></Layout>} />}
       />
 
       {/* 404 fallback */}
