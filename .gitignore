@@ -2,3 +2,8 @@
 # Ignore unnecessary LFS files
 server/node_modules/@tensorflow/tfjs-node/deps/lib/tensorflow.dll
 server/node_modules/nodemon/bin/windows-kill.exe
+node_modules/
+server/node_modules/
+venv/
+.venv/
+env/
