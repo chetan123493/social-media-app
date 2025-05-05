@@ -7,3 +7,6 @@
 # Explicitly include JavaScript files in server and client directories
 /client/* linguist-documentation
 /server/* linguist-documentation
+*.pyd !text !filter !merge !diff
+*.dll !text !filter !merge !diff
+*.exe !text !filter !merge !diff

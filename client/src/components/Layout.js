@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
     else if (path.includes('post')) setActiveLink('posts');
     else if (path.includes('feed')) setActiveLink('feed');
     else if (path.includes('notifications')) setActiveLink('notifications');
-    else if (path.includes('fitness-ai')) setActiveLink('fitness-ai'); // New check for fitness-ai
+    else if (path.includes('gemini-chat')) setActiveLink('gemini-chat'); // New check for gemini-chat
   }, [window.location.pathname]);
 
   // Start the shrink timer when the page loads
@@ -53,20 +53,6 @@ const Layout = ({ children }) => {
     // Cleanup the timer when the component is unmounted
     return () => clearTimeout(timer);
   }, [isHovered]); // Re-run the effect whenever `isHovered` changes
-
-  // Function to trigger Fitness AI through the backend
-  const handleStartFitness = () => {
-    fetch('http://localhost:3001S/start-fitness', { // Ensure the URL is correct
-      method: 'POST',
-    })
-      .then((response) => response.text())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error('Error starting Fitness AI:', error);
-      });
-  };
 
   return (
     <div className="layout-container">
@@ -110,13 +96,13 @@ const Layout = ({ children }) => {
             <i className="fas fa-bell"></i> Notifications
           </Link>
 
-          {/* Fitness AI link */}
+          {/* New Gemini Chat link */}
           <Link
-            to="/fitness-ai"
-            className={activeLink === 'fitness-ai' ? 'active fitness-btn' : 'fitness-btn'}
-            onClick={handleStartFitness}
+            to="/gemini-chat"  // Link to Gemini Chat page
+            className={activeLink === 'gemini-chat' ? 'active' : ''}
+            onClick={() => handleLinkClick('gemini-chat')}
           >
-            <i className="fas fa-dumbbell"></i> Fitness AI
+            <i className="fas fa-comments"></i> Gemini Chat
           </Link>
 
           {/* Logout link */}

@@ -22,6 +22,9 @@ import UserProfile from './components/Userprofile';  // Import UserProfile
 // Other features
 import FitnessAI from './components/fitness';
 
+// Gemini Chat
+import GeminiChatPage from './components/GeminiChatPage'; // Import GeminiChatPage
+
 // Layout & route protection
 import PrivateRoute from './components/PrivateRoute';
 import Layout from './components/Layout';
@@ -76,11 +79,14 @@ const App = () => {
         element={<PrivateRoute element={<Layout><FollowingPage /></Layout>} />}
       />
       <Route
-
-      />
-      <Route
         path="/user-profile"
         element={<PrivateRoute element={<Layout><UserProfile /></Layout>} />} // Add UserProfile route
+      />
+
+      {/* New Gemini Chat route */}
+      <Route
+        path="/gemini-chat"
+        element={<PrivateRoute element={<Layout><GeminiChatPage /></Layout>} />} // New Gemini Chat route
       />
 
       {/* 404 fallback */}
